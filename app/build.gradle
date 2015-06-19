@@ -22,5 +22,7 @@ android {
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     compile 'com.android.support:appcompat-v7:22.2.0'
+    compile 'com.android.support:design:22.2.0'
     compile 'com.wada811:android-material-design-colors:2.0.0'
+    compile 'com.squareup.okhttp:okhttp:2.4.0'
 }
