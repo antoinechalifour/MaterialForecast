@@ -3,4 +3,7 @@
 
     <string name="splash.title.material">Material</string>
     <string name="splash.title.forecast">Forecast</string>
+
+    <string name="fragment.place.title">Location</string>
+    <string name="fragment.saved.title">My places</string>
 </resources>
