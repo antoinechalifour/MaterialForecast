@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 
+import antoinechalifour.ovh.materialforecast.network.WeatherApi;
+
 /**
  * Created by antoine on 19/06/15.
  */
@@ -29,18 +31,17 @@ public class ServiceHelper {
     }
 
     public boolean startService(String action, Bundle extras) {
-        Log.d(TAG, "starting new service : " + action);
         Intent intent = null;
-        if (action.equals(Actions.ACTION_WEATHER)) {
+        if (action.equals(WeatherApi.TAG)) {
             intent = new Intent(mContext, WeatherService.class);
+            intent.putExtras(extras);
+
+            Log.d(TAG, "starting new service : " + action);
+            mContext.startService(intent);
+            return true;
+        } else {
+            return false;
         }
-
-        mContext.startService(intent);
-        return true;
     }
 
-    public enum Actions {
-        ACTION_WEATHER,
-        ACTION_PHOTO
-    }
 }

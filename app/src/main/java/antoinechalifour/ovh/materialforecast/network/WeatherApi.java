@@ -1,5 +1,7 @@
 package antoinechalifour.ovh.materialforecast.network;
 
+import android.util.Log;
+
 import com.squareup.okhttp.Request;
 import com.squareup.okhttp.Response;
 
@@ -15,14 +17,15 @@ public class WeatherApi {
     public static final String FORECAST_SUFFIX = "forecast";
 
 
-    public Response getWeather(final int lat, final int lon) throws IOException {
+    public static Response getWeather(final double lat, final double lon) throws IOException {
         String q = "?lat=" + lat + "&lon=" + lon;
+        Log.d(TAG, q);
         final Request request = new Request.Builder().url(SERVER_URI + WEATHER_SUFFIX + q).build();
 
         return NetworkManager.HTTP_CLIENT.newCall(request).execute();
     }
 
-    public Response getForecast(int lat, int lon) throws IOException {
+    public static Response getForecast(final double lat, final double lon) throws IOException {
         String q = "?lat" + lat + "&lon=" + lon;
         final Request request = new Request.Builder().url(SERVER_URI + FORECAST_SUFFIX + q).build();
 
