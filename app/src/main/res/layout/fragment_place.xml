@@ -1,48 +1,59 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical">
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+             android:layout_width="match_parent"
+             android:layout_height="match_parent">
 
-    <ImageView
-        android:id="@+id/place.photo"
+    <RelativeLayout
+        android:id="@+id/place.container"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:adjustViewBounds="true"
-        android:src="@drawable/placeholder"/>
+        android:layout_height="match_parent"
+        android:visibility="gone">
 
-    <TextView
-        android:id="@+id/place.temperature"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/place.photo"
-        android:layout_alignEnd="@+id/place.photo"
-        android:layout_alignRight="@+id/place.photo"
-        android:padding="16dp"
-        android:text="22°"
-        android:textColor="@color/md_white"
-        android:textSize="56sp"/>
+        <ImageView
+            android:id="@+id/place.photo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:adjustViewBounds="true"
+            android:src="@drawable/placeholder"/>
 
-    <TextView
-        android:id="@+id/place.name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/place.photo"
-        android:padding="16dp"
-        android:text="Paris, France"
-        android:textSize="45sp"/>
+        <TextView
+            android:id="@+id/place.temperature"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/place.photo"
+            android:layout_alignEnd="@+id/place.photo"
+            android:layout_alignRight="@+id/place.photo"
+            android:padding="16dp"
+            android:text="22°"
+            android:textColor="@color/md_white"
+            android:textSize="56sp"/>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:paddingEnd="16dp"
-        android:paddingLeft="16dp"
-        android:paddingRight="16dp"
-        android:paddingStart="16dp"
-        android:weightSum="5">
+        <TextView
+            android:id="@+id/place.name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/place.photo"
+            android:padding="16dp"
+            android:text="Paris, France"
+            android:textSize="45sp"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingEnd="16dp"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            android:paddingStart="16dp"
+            android:weightSum="5">
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+    <include
+        android:id="@+id/place.loader"
+        layout="@layout/loading"/>
 
 
-    </LinearLayout>
-
-</RelativeLayout>
+</FrameLayout>

@@ -27,6 +27,10 @@ public class PlacePresenter {
         initLocation();
     }
 
+    private void initViews() {
+        mView.showLoading();
+    }
+
     private void initLocation() {
         Context context = mView.getContext();
         LocationManager locationManager = (LocationManager) context.getSystemService(Context.LOCATION_SERVICE);
