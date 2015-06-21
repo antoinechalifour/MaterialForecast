@@ -13,6 +13,7 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 
+import antoinechalifour.ovh.materialforecast.models.City;
 import antoinechalifour.ovh.materialforecast.network.WeatherApi;
 
 /**
@@ -27,8 +28,8 @@ public class WeatherService extends IntentService {
 
     @Override
     protected void onHandleIntent(Intent intent) {
-        Location location = (Location) intent.getParcelableExtra("location");
-        ResultReceiver receiver = (ResultReceiver) intent.getParcelableExtra("receiver");
+        Location location = intent.getParcelableExtra("location");
+        ResultReceiver receiver = intent.getParcelableExtra("receiver");
 
         try {
             Response response = WeatherApi.getWeather(location.getLatitude(), location.getLongitude());
@@ -37,14 +38,16 @@ public class WeatherService extends IntentService {
             JSONObject jsonResponse = new JSONObject(response.body().string());
             JSONObject jsonMain = jsonResponse.getJSONObject("main");
             String country = jsonResponse.getJSONObject("sys").getString("country");
-            String city = jsonResponse.getString("name");
+            String name = jsonResponse.getString("name");
             double temp = jsonMain.getDouble("temp");
             double tempMin = jsonMain.getDouble("temp_min");
             double tempMax = jsonMain.getDouble("temp_max");
 
-            result.putString("country", country);
-            result.putString("city", city);
-            result.putDouble("temp", temp);
+            int celcius = (int) (temp - 272.15);
+
+            City city = new City(name, country, celcius);
+
+            result.putParcelable("city", city);
 
             receiver.send(response.code(), result);
         } catch (IOException e) {

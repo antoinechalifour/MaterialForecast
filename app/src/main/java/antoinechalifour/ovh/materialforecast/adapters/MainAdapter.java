@@ -13,6 +13,7 @@ import antoinechalifour.ovh.materialforecast.views.fragments.SavedPlacesFragment
  * Created by antoine on 20/06/15.
  */
 public class MainAdapter extends FragmentPagerAdapter {
+
     private Fragment[] mFragments = {
             new PlaceFragment(),
             new SavedPlacesFragment()

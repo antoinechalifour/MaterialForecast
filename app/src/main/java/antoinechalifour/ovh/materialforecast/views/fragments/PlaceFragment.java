@@ -1,5 +1,6 @@
 package antoinechalifour.ovh.materialforecast.views.fragments;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -10,14 +11,20 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import antoinechalifour.ovh.materialforecast.R;
+import antoinechalifour.ovh.materialforecast.models.City;
+import antoinechalifour.ovh.materialforecast.presenters.PlacePresenter;
+import antoinechalifour.ovh.materialforecast.views.PlaceView;
 
 /**
  * Created by antoine on 20/06/15.
  */
-public class PlaceFragment extends Fragment {
+public class PlaceFragment extends Fragment implements PlaceView {
+    public static final String TAG = PlaceFragment.class.getSimpleName();
     private ImageView mPlacePicture;
     private TextView mPlaceTemperature;
     private TextView mPlaceName;
+
+    private PlacePresenter mPresenter;
 
     @Nullable
     @Override
@@ -27,6 +34,24 @@ public class PlaceFragment extends Fragment {
         mPlaceTemperature = (TextView) view.findViewById(R.id.place_temperature);
         mPlaceName = (TextView) view.findViewById(R.id.place_name);
 
+        mPresenter = new PlacePresenter(this);
+
         return view;
+    }
+
+    @Override
+    public Context getContext() {
+        return getActivity();
+    }
+
+    @Override
+    public void showLoading() {
+
+    }
+
+    @Override
+    public void showCity(final City city) {
+        mPlaceTemperature.setText(city.getTemp() + "°");
+        mPlaceName.setText(city.getName() + ", " + city.getCountry());
     }
 }
